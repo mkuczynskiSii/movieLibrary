@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -26,10 +27,17 @@ public class Actor {
     public static void printAllMoviesWhereActorPlayed(MovieLibrary movieLibrary,
                                                       String actorsFirstName,
                                                       String actorsLastName) {
-        movieLibrary.getMovieList().stream()
+        List<String> titlesList = movieLibrary.getMovieList().stream()
                 .filter(movie -> movie.getActors().stream()
                         .anyMatch(actor -> actor.firstName.equals(actorsFirstName) && actor.lastName.equals(actorsLastName)))
                 .map(Movie::getTitle)
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
+
+        if (titlesList.isEmpty()) {
+            System.out.println("W bibliotece nie ma filmów w których wystąpił ten aktor");
+        } else {
+            System.out.println("Filmy w których wystąpił " + actorsFirstName + " " + actorsLastName + " to:");
+            titlesList.forEach(System.out::println);
+        }
     }
 }

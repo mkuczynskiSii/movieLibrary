@@ -3,6 +3,7 @@ import lombok.Setter;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -18,11 +19,19 @@ public class Movie {
     }
 
     public static void printMoviesCreatedBetweenDates(MovieLibrary movieLibrary, int startDate, int finishDate) {
-        movieLibrary.getMovieList().stream()
+        List<String> selectedTitles = movieLibrary.getMovieList().stream()
                 .filter(movie -> Integer.parseInt(movie.productionDate) >= startDate)
                 .filter(movie -> Integer.parseInt(movie.productionDate) <= finishDate)
                 .map(Movie::getTitle)
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
+
+        if (selectedTitles.isEmpty()) {
+            System.out.println("Biblioteka nie posiada filmów wyprodukowanych w tym okresie");
+        } else {
+            System.out.println("Filmy z biblioteki wyprodukowane pomiędzy " + startDate + ", a " + finishDate + " rokiem to:");
+            selectedTitles.forEach(System.out::println);
+        }
+
     }
 
     @Override

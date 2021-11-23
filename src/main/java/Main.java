@@ -15,7 +15,6 @@ public class Main {
                     int startDate = scanner.nextInt();
                     System.out.println("Podaj końcowy rok produkcji");
                     int finishDate = scanner.nextInt();
-                    System.out.println("Filmy z biblioteki wyprodukowane pomiędzy " + startDate + ", a " + finishDate + " rokiem to:");
                     Movie.printMoviesCreatedBetweenDates(movieLibrary, startDate, finishDate);
                     break;
                 case 2:
@@ -23,11 +22,10 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Podaj imię aktora");
-                    String actorFirstName = scanner.next();
+                    String actorsFirstName = scanner.next();
                     System.out.println("Podaj nazwisko aktora");
-                    String actorLastName = scanner.next();
-                    System.out.println("Filmy w których wystąpił " + actorFirstName + " " + actorLastName + " to:");
-                    Actor.printAllMoviesWhereActorPlayed(movieLibrary, actorFirstName, actorLastName);
+                    String actorsLastName = scanner.next();
+                    Actor.printAllMoviesWhereActorPlayed(movieLibrary, actorsFirstName, actorsLastName);
                     break;
                 case 4:
                     break;
