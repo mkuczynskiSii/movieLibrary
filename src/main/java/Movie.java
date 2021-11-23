@@ -18,22 +18,6 @@ public class Movie {
         System.out.println(movieLibrary.getMovieList().get(new Random().nextInt(movieLibrary.getMovieList().size())));
     }
 
-    public static void printMoviesCreatedBetweenDates(MovieLibrary movieLibrary, int startDate, int finishDate) {
-        List<String> selectedTitles = movieLibrary.getMovieList().stream()
-                .filter(movie -> Integer.parseInt(movie.productionDate) >= startDate)
-                .filter(movie -> Integer.parseInt(movie.productionDate) <= finishDate)
-                .map(Movie::getTitle)
-                .collect(Collectors.toList());
-
-        if (selectedTitles.isEmpty()) {
-            System.out.println("Biblioteka nie posiada filmów wyprodukowanych w tym okresie");
-        } else {
-            System.out.println("Filmy z biblioteki wyprodukowane pomiędzy " + startDate + ", a " + finishDate + " rokiem to:");
-            selectedTitles.forEach(System.out::println);
-        }
-
-    }
-
     @Override
     public String toString() {
         return "title: " + title + "\n" +
